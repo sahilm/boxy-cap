@@ -20,10 +20,11 @@ Or install it yourself as:
 
 In the `Capfile` to include all recipes add:
 
-    require 'handy-cap/default'
+    require 'handy-cap'
 
 If you want to load only specified recipe:
 
+    require 'handy-cap/util'
     require 'handy-cap/setup'
     require 'handy-cap/check'
     require 'handy-cap/nginx'
@@ -34,16 +35,11 @@ If you want to load only specified recipe:
     require 'handy-cap/rails'
     require 'handy-cap/unicorn'
     require 'handy-cap/honeybadger'
-    require 'handy-cap/airbrake'
+
 
 Also you need to include rake tasks in your `Rakefile`:
 
     require 'handy-cap'
-
-### Nginx
-### Setup
-### Check
-### Monit
 
 ### Database recipes
 
@@ -95,7 +91,7 @@ test:
 
 ### Honeybadger
 
-`honeybadger:deploy` - notify the service about deploy and it would be invoked after `deploy:migrate`
+- `honeybadger:deploy` - notify the service about deploy and it would be invoked after `deploy:migrate`
 
 ### Settings
 
