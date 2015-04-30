@@ -99,8 +99,10 @@ test:
 
 ### Settings
 
-Support to manage https://github.com/sstephenson/rbenv-vars to add ENV based config files. First should add `require 'handy-cap/settings'` to `Capfile`.
-There are tasks available:
+Support to manage https://github.com/sstephenson/rbenv-vars to add ENV based config files. 
+You can require this task individually by adding `require 'handy-cap/rbenv_vars'` to `Capfile`.
+
+There are the tasks available related to it:
 
 - `cap staging config:vars` Show current .rbenv-vars file
 - `cap staging config:vars:edit` Edit remote .rbenv-vars file
