@@ -1,0 +1,18 @@
+require_relative 'handy-cap/version'
+require_relative 'handy-cap/util'
+require_relative 'handy-cap/railtie' if defined?(Rails)
+require_relative 'handy-cap/setup'
+require_relative 'handy-cap/check'
+require_relative 'handy-cap/nginx'
+require_relative 'handy-cap/monit'
+require_relative 'handy-cap/database'
+require_relative 'handy-cap/delayed_job'
+require_relative 'handy-cap/log'
+require_relative 'handy-cap/rails'
+require_relative 'handy-cap/unicorn'
+require_relative 'handy-cap/git'
+require_relative 'handy-cap/rake'
+require_relative 'handy-cap/files'
+require_relative 'handy-cap/rbenv_vars'
+require_relative 'handy-cap/util'
+

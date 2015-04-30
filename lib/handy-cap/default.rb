@@ -1,0 +1,8 @@
+require 'handy-cap/database'
+require 'handy-cap/check'
+require 'handy-cap/delayed_job'
+require 'handy-cap/monit'
+require 'handy-cap/nginx'
+require 'handy-cap/rake'
+require 'handy-cap/setup'
+require 'handy-cap/unicorn'

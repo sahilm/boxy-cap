@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'j-cap-recipes/version'
+require 'handy-cap/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "j-cap-recipes"
-  spec.version       = JCap::Recipes::VERSION
-  spec.authors       = ["Michael Nikitochkin"]
-  spec.email         = ["miry.sof@gmail.com"]
+  spec.name          = "handy-cap"
+  spec.version       = HandyCap::Recipes::VERSION
+  spec.authors       = ["Vipul A M", "Michael Nikitochkin" ]
+  spec.email         = ["vipul@bigbinary.com"]
   spec.description   = %q{A litle knife to deploy Rails application}
   spec.summary       = %q{Capistrano 3 recipes for nginx, monit, rails log, setup, unicorn}
-  spec.homepage      = "https://github.com/jetthoughts/j-cap-recipes"
+  spec.homepage      = "https://github.com/bigbinary/handy-cap"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)

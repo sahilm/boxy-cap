@@ -1,4 +1,4 @@
-module JCap
+module HandyCap
   module Recipes
     module Util
       class << self

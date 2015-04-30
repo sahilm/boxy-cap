@@ -1,13 +1,12 @@
 # Capistrano::Recipes
-[![Gem Version](https://badge.fury.io/rb/j-cap-recipes.png)](http://badge.fury.io/rb/j-cap-recipes)
 
-A simple number of capistrano recipes to deploy rails application using Capistrano v3.
+Handy set of Capistrano Recipes to work with Rails and Capistrano v3.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'j-cap-recipes', group: :development
+    gem 'handy-cap', group: :development
 
 And then execute:
 
@@ -15,31 +14,31 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install j-cap-recipes
+    $ gem install handy-cap
 
 ## Usage
 
 In the `Capfile` to include all recipes add:
 
-    require 'j-cap-recipes/default'
+    require 'handy-cap/default'
 
 If you want to load only specified recipe:
 
-    require 'j-cap-recipes/setup'
-    require 'j-cap-recipes/check'
-    require 'j-cap-recipes/nginx'
-    require 'j-cap-recipes/monit'
-    require 'j-cap-recipes/database'
-    require 'j-cap-recipes/delayed_job'
-    require 'j-cap-recipes/log'
-    require 'j-cap-recipes/rails'
-    require 'j-cap-recipes/unicorn'
-    require 'j-cap-recipes/honeybadger'
-    require 'j-cap-recipes/airbrake'
+    require 'handy-cap/setup'
+    require 'handy-cap/check'
+    require 'handy-cap/nginx'
+    require 'handy-cap/monit'
+    require 'handy-cap/database'
+    require 'handy-cap/delayed_job'
+    require 'handy-cap/log'
+    require 'handy-cap/rails'
+    require 'handy-cap/unicorn'
+    require 'handy-cap/honeybadger'
+    require 'handy-cap/airbrake'
 
 Also you need to include rake tasks in your `Rakefile`:
 
-    require 'j-cap-recipes'
+    require 'handy-cap'
 
 ### Nginx
 ### Setup
@@ -100,14 +99,11 @@ test:
 
 ### Settings
 
-Support to manage https://github.com/bigbinary/handy config files. First should add `require 'j-cap-recipes/settings'` to `Capfile`.
+Support to manage https://github.com/sstephenson/rbenv-vars to add ENV based config files. First should add `require 'handy-cap/settings'` to `Capfile`.
 There are tasks available:
 
-- `cap staging config:settings` Show the current staging config files;
-- `cap staging config:settings:delete` Remove the custom env settings file;
-- `cap staging config:settings:upload` Update the remote config file with local one;
-- `cap staging config:settings:get` Download the remote config file to local one
-- `cap staging config:settings:edit` Direct editing of the settings file
+- `cap staging config:vars` Show current .rbenv-vars file
+- `cap staging config:vars:edit` Edit remote .rbenv-vars file
 
 ### Update VERSION file with build number
 
@@ -120,7 +116,7 @@ set :version_filename, 'VERSION'
 
 ### Git
 
-First should add `require 'j-cap-recipes/git'` to `Capfile`.
+First should add `require 'handy-cap/git'` to `Capfile`.
 - `cap staging git:release:tag` Create tag in local repo by variable `git_tag_name`
  Example of usage in your `deploy.rb`:
 
@@ -131,7 +127,7 @@ after 'deploy:finished', 'git:release:tag'
 
 ### Files
 
-Add 'j-cap-recipes/git'` to `Capfile`.
+Add 'handy-cap/git'` to `Capfile`.
 And now you have task to download any remote file to local via:
 `bundle exec cap staging "files:download[config/database.yml]"`.
 You will find `download.tar` file in current directory with `config/database.yml`.
@@ -140,19 +136,6 @@ To download all share folder use:
 `bundle exec cap staging "files:download[.]"`
 
 To extract the archive `tar -xvf download.tar -C tmp`
-
-### Airbrake
-
-Add 'j-cap-recipes/airbrake'` to `Capfile`. The original version capistrano task to notify airbrake service support only
-Capistrano version 2. Migrate the task to support version 3.
-
-To send Airbrake deploy notification, you should also add hook to `deploy.rb`
-
-```ruby
-after 'deploy:finishing', 'airbrake:deploy'
-```
-
-You can change the default api key using `ENV['API_KEY']`.
 
 
 ### Rake tasks

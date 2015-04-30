@@ -40,12 +40,12 @@ namespace :db do
   task :kill_postgres_connections => :environment do
     config = ActiveRecord::Base.connection_config
     next if config[:adapter] != "postgresql"
-    db_name = ActiveRecord::Base.connection.current_database
+    db_name         = ActiveRecord::Base.connection.current_database
     pid_column_name = if ActiveRecord::Base.connection.send(:postgresql_version) > 90200
-      'pid'
-    else
-      'procpid'
-    end
+                        'pid'
+                      else
+                        'procpid'
+                      end
 
     kill_query = <<-QUERY
       SELECT pg_terminate_backend(#{pid_column_name})
@@ -86,32 +86,32 @@ namespace :db do
   end
 
   def postgres_dump_command(config, database_name, backup_file)
-    result  = "#{postgres_password(config)} pg_dump #{database_name} -w -F c"
+    result = "#{postgres_password(config)} pg_dump #{database_name} -w -F c"
     result += postgres_auth_options(config)
     result + " > #{backup_file}"
   end
 
   def mysql_dump_command(config, database_name, backup_file)
-    result  = "mysqldump #{database_name} "
+    result = "mysqldump #{database_name} "
     result += mysql_auth_options(config)
     result + " > #{backup_file}"
   end
 
   def dump_command(config, database_name, backup_file)
     case config[:adapter]
-    when /mysql/
-      mysql_dump_command(config, database_name, backup_file)
-    when 'postgresql', 'pg'
-      postgres_dump_command(config, database_name, backup_file)
+      when /mysql/
+        mysql_dump_command(config, database_name, backup_file)
+      when 'postgresql', 'pg'
+        postgres_dump_command(config, database_name, backup_file)
     end
   end
 
   def db_restore_command(config, database_name, backup_file)
     case config[:adapter]
-    when /mysql/
-      mysql_restore_command(config, database_name, backup_file)
-    when 'postgresql', 'pg'
-      postgres_restore_command(config, database_name, backup_file)
+      when /mysql/
+        mysql_restore_command(config, database_name, backup_file)
+      when 'postgresql', 'pg'
+        postgres_restore_command(config, database_name, backup_file)
     end
   end
 
@@ -144,15 +144,6 @@ namespace :db do
     command_options
   end
 
-end
-
-#TODO: Use setting to get S3 credentials
-def send_to_amazon(file_path)
-  bucket    = "db-backups"
-  file_name = File.basename(file_path)
-  AWS::S3::Base.establish_connection!(:access_key_id => 'YOUR KEY', :secret_access_key => 'YOUR SECRET')
-  #push the file up
-  AWS::S3::S3Object.store(file_name, File.open(file_path), bucket)
 end
 
 def execute_task!(task_name)

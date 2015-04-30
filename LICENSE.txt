@@ -1,4 +1,4 @@
-Copyright (c) 2013 Michael Nikitochkin
+Copyright (c) 2015 Vipul A M, Michael Nikitochkin
 
 MIT License
 
