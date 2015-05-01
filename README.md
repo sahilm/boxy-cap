@@ -20,7 +20,7 @@ Or install it yourself as:
 
 In the `Capfile` to include all recipes add:
 
-    require 'boxy-cap'
+    require 'boxy-cap/default'
 
 If you want to load only specified recipe:
 
