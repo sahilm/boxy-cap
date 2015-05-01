@@ -18,9 +18,9 @@ namespace :deploy do
     task :imagemagick do
       on roles(:all) do |host|
         if test("[ $(which identify) ]")
-          info "Javascript runtime nodejs is available on #{host}"
+          info "ImageMagick Tools available on #{host}"
         else
-          error "Javascript runtime nodejs is not available on #{host}"
+          error "ImageMagick Tools not available on #{host}"
         end
       end
     end

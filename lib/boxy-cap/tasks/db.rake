@@ -1,5 +1,5 @@
 namespace :db do
-  desc 'PG backup'
+  desc 'Backup Database specific to MySQL of PostgreSQL'
   task backup: [:environment, :load_config] do
     #stamp the filename
     dateformat = ENV['date-format'] || '%Y-%m-%d_%H-%M-%S'
@@ -22,7 +22,7 @@ namespace :db do
     safe_ln backup_file, latest_file_name
   end
 
-  desc 'PG restore from the last backup file'
+  desc 'Restore Database Backup specific to MySQL of PostgreSQL, from last backup file'
   task restore: ['db:create', :environment, :load_config] do
     config        = ActiveRecord::Base.connection_config
     database_name = ActiveRecord::Base.connection.current_database
@@ -61,7 +61,7 @@ namespace :db do
     end
   end
 
-  desc 'Clean up old dumps'
+  desc 'Cleanup old Database dumps, and keep only specified number of dumps'
   task :cleanup do
     dumps = FileList.new(File.join(backup_dir, '*.dump')).exclude(/_latest.dump$/)
 

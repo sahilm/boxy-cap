@@ -7,7 +7,7 @@ namespace :deploy do
 end
 
 namespace :db do
-  desc 'Created the DB'
+  desc 'Create Database'
   task :create do
     on primary fetch(:migration_role) do
       within release_path do
@@ -18,7 +18,7 @@ namespace :db do
     end
   end
 
-  desc 'Create backup of the DB'
+  desc 'Create backup of Database'
   task :backup do
     on primary fetch(:migration_role) do
       within release_path do
@@ -30,7 +30,7 @@ namespace :db do
     end
   end
 
-  desc 'Restore the latest dump of the DB'
+  desc 'Restore the latest dump of Database'
   task :restore do
     on primary fetch(:migration_role) do
       within release_path do
@@ -48,21 +48,21 @@ namespace :db do
         FileUtils.mkdir_p 'db/backups'
         env_name = args[:env_name] || fetch(:rails_env).to_s
         database_config_content = read_remote_database_config
-        database_name = HandyCap::Recipes::Util.database_name(env_name, database_config_content)
+        database_name = BoxyCap::Recipes::Util.database_name(env_name, database_config_content)
         backup_file = "db/backups/#{database_name}_latest.dump"
         download! "#{release_path}/#{backup_file}", backup_file
       end
     end
   end
 
-  desc 'Download to local machine the latest backup'
+  desc 'Upload to remote machine the latest backup'
   task :dump_upload, :env_name do |task, args|
     on primary fetch(:migration_role) do
       within release_path do
         FileUtils.mkdir_p 'db/backups'
         env_name = args[:env_name] || fetch(:rails_env).to_s
         database_config_content = read_remote_database_config
-        database_name = HandyCap::Recipes::Util.database_name(env_name, database_config_content)
+        database_name = BoxyCap::Recipes::Util.database_name(env_name, database_config_content)
         backup_file = "db/backups/#{database_name}_latest.dump"
         upload! backup_file, "#{release_path}/#{backup_file}"
       end
@@ -71,7 +71,9 @@ namespace :db do
 
 end
 
+
 remote_file 'config/database.yml' => '/tmp/database.yml', roles: :app
+
 after 'config/database.yml', :remove_db_tmp_file do
   File.delete '/tmp/database.yml'
 end

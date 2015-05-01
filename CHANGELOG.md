@@ -1,5 +1,15 @@
 ## Changelog
 
+## 0.0.19
+
+* Moved gem to new namespace boxy-cap
+* Removed handy, airbrake, settings, hpusher tasks and related requires
+* Added rbenv_vars task to allow editing .rbenv-vars files on remote machines
+* Cleanups of redundant code
+* Added require for all tasks from boxy-cap default file
+* Fixed invocation of delayed_job and unicorn to not conflict due to monit invocation
+* Made delayed_job and unicorn restart through monit after deploy:restart task
+
 ## 0.0.18
 
 * Support mysql database for backup

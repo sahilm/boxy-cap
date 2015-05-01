@@ -6,7 +6,7 @@ Handy set of Capistrano Recipes to work with Rails and Capistrano v3.
 
 Add this line to your application's Gemfile:
 
-    gem 'handy-cap', group: :development
+    gem 'boxy-cap', group: :development
 
 And then execute:
 
@@ -14,32 +14,32 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install handy-cap
+    $ gem install boxy-cap
 
 ## Usage
 
 In the `Capfile` to include all recipes add:
 
-    require 'handy-cap'
+    require 'boxy-cap'
 
 If you want to load only specified recipe:
 
-    require 'handy-cap/util'
-    require 'handy-cap/setup'
-    require 'handy-cap/check'
-    require 'handy-cap/nginx'
-    require 'handy-cap/monit'
-    require 'handy-cap/database'
-    require 'handy-cap/delayed_job'
-    require 'handy-cap/log'
-    require 'handy-cap/rails'
-    require 'handy-cap/unicorn'
-    require 'handy-cap/honeybadger'
+    require 'boxy-cap/util'
+    require 'boxy-cap/setup'
+    require 'boxy-cap/check'
+    require 'boxy-cap/nginx'
+    require 'boxy-cap/monit'
+    require 'boxy-cap/database'
+    require 'boxy-cap/delayed_job'
+    require 'boxy-cap/log'
+    require 'boxy-cap/rails'
+    require 'boxy-cap/unicorn'
+    require 'boxy-cap/honeybadger'
 
 
 Also you need to include rake tasks in your `Rakefile`:
 
-    require 'handy-cap'
+    require 'boxy-cap'
 
 ### Database recipes
 
@@ -96,7 +96,7 @@ test:
 ### Settings
 
 Support to manage https://github.com/sstephenson/rbenv-vars to add ENV based config files. 
-You can require this task individually by adding `require 'handy-cap/rbenv_vars'` to `Capfile`.
+You can require this task individually by adding `require 'boxy-cap/rbenv_vars'` to `Capfile`.
 
 There are the tasks available related to it:
 
@@ -114,7 +114,7 @@ set :version_filename, 'VERSION'
 
 ### Git
 
-First should add `require 'handy-cap/git'` to `Capfile`.
+First should add `require 'boxy-cap/git'` to `Capfile`.
 - `cap staging git:release:tag` Create tag in local repo by variable `git_tag_name`
  Example of usage in your `deploy.rb`:
 
@@ -125,7 +125,7 @@ after 'deploy:finished', 'git:release:tag'
 
 ### Files
 
-Add 'handy-cap/git'` to `Capfile`.
+Add 'boxy-cap/git'` to `Capfile`.
 And now you have task to download any remote file to local via:
 `bundle exec cap staging "files:download[config/database.yml]"`.
 You will find `download.tar` file in current directory with `config/database.yml`.

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    handy-cap (0.0.18)
+    boxy-cap (0.0.19)
 
 GEM
   remote: https://rubygems.org/
@@ -25,7 +25,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  boxy-cap!
   bundler (~> 1.3)
-  capistrano (>= 3.0.0)
-  handy-cap!
+  capistrano (>= 3.3.0)
   rake

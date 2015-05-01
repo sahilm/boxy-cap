@@ -1,4 +1,4 @@
-module HandyCap
+module BoxyCap
   module Recipes
     module Util
       class << self
