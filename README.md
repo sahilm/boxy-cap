@@ -6,7 +6,7 @@ Handy set of Capistrano Recipes to work with Rails and Capistrano v3.
 
 Add this line to your application's Gemfile:
 
-    gem 'boxy-cap', group: :development
+    gem 'boxy-cap'
 
 And then execute:
 
