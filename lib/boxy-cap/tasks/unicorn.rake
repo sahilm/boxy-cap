@@ -1,11 +1,14 @@
 namespace :unicorn do
   desc 'Restart the unicorn process'
-  task :restart do |task, args|
-    on roles(:app) do
-      execute :sudo, :monit, "-g #{fetch(:monit_unicorn_name)} restart"
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+        if test("[ -f #{current_path.join('tmp/pids/unicorn.pid')} ]")
+          execute :kill, "-s USR2 `cat #{current_path.join('tmp/pids/unicorn.pid')}`"
+        else
+          execute :sudo, :monit, "-g #{fetch(:monit_unicorn_name)} restart"
+        end
     end
   end
-  after 'deploy:cleanup', 'unicorn:restart'
 
   desc 'Stop the unicorn process'
   task :stop do
